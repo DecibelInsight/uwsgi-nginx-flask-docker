@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /usr/bin/env sh
 set -e
 # Get the maximum upload file size for Nginx, default to 0: unlimited
 USE_NGINX_MAX_UPLOAD=${NGINX_MAX_UPLOAD:-0}
@@ -17,6 +17,10 @@ USE_STATIC_PATH=${STATIC_PATH:-'/app/static'}
 # Get the listen port for Nginx, default to 80
 USE_LISTEN_PORT=${LISTEN_PORT:-80}
 
+# Explicitly add installed Python packages and uWSGI Python packages to PYTHONPATH
+# Otherwise uWSGI can't import Flask
+export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/site-packages:/usr/lib/python2.7/site-packages
+
 # Generate Nginx config first part using the environment variables
 echo "server {
     listen ${USE_LISTEN_PORT};
@@ -32,7 +36,7 @@ echo "server {
     }" > /etc/nginx/conf.d/nginx.conf
 
 # If STATIC_INDEX is 1, serve / with /static/index.html directly (or the static URL configured)
-if [[ $STATIC_INDEX == 1 ]] ; then 
+if [[ $STATIC_INDEX == 1 ]] ; then
 echo "    location = / {
         index $USE_STATIC_URL/index.html;
     }" >> /etc/nginx/conf.d/nginx.conf

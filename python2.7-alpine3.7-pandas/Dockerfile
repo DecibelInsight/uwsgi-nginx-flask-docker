@@ -1,6 +1,15 @@
-FROM tiangolo/uwsgi-nginx:python3.6-alpine3.7
+FROM tiangolo/uwsgi-nginx:python2.7-alpine3.7
 
-RUN pip install flask
+RUN pip install --no-cache-dir flask
+
+# install scientific stuff here
+RUN apk update
+RUN apk --no-cache add build-base gcc gfortran python python-dev py-pip freetype-dev libpng-dev openblas-dev
+RUN ln -s /usr/include/locale.h /usr/include/xlocale.h
+RUN pip install --no-cache-dir numpy==1.14.3 &&\
+    pip install --no-cache-dir python-dateutil==2.7.3 &&\
+    pip install --no-cache-dir pytz==2018.4 &&\
+    pip install --no-cache-dir --no-deps pandas==0.23.0
 
 # By default, allow unlimited file sizes, modify it to limit the file sizes
 # To have a maximum of 1 MB (Nginx's default) change the line to:
