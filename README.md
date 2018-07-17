@@ -6,7 +6,7 @@ through `pip`. In latest Alpine distributions, the needed `glibc` header has bee
 Furthermore, the latest `NumPy` release (1.14.4) breake the installation of `Pandas`.
 At the moment, the PyPI community didn't fixed this stuff, so this is a repo to build
 a Docker image based on Alpine containing the workaround for the installation of
-`NumPy`/`Pandas`:
+`NumPy` (1.14.3), `Pandas` (0.23.0) and `scikit-learn` (0.19.2):
 
 * proper link to the needed `glibc` header
 * preventive build of `Pandas` dependencies in order to avoid the latest `NumPy` version
