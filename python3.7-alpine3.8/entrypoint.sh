@@ -30,7 +30,7 @@ USE_LISTEN_PORT=${LISTEN_PORT:-80}
 
 # Explicitly add installed Python packages and uWSGI Python packages to PYTHONPATH
 # Otherwise uWSGI can't import Flask
-export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/site-packages:/usr/lib/python2.7/site-packages
+export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python3.7/site-packages:/usr/lib/python3.7/site-packages
 
 # Generate Nginx config first part using the environment variables
 echo "server {
