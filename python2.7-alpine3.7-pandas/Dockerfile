@@ -1,5 +1,7 @@
 FROM tiangolo/uwsgi-nginx:python2.7-alpine3.7
 
+LABEL maintainer="Giuseppe Broccolo <gbroccolo@decibelinsight.com>"
+
 RUN pip install --no-cache-dir flask
 
 # install scientific stuff here
