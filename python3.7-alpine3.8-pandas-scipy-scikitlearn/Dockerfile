@@ -6,10 +6,13 @@ RUN pip3 install --no-cache-dir flask
 
 # install the scientific stuff here
 RUN apk update &&\
-    apk --no-cache add build-base gcc gfortran
+    apk --no-cache add build-base gcc gfortran &&\
+    apk --no-cache add openblas-dev
 
 RUN pip3 install --no-cache-dir numpy==1.15.4 &&\
-    pip3 install --no-cache-dir pandas==0.23.4
+    pip3 install --no-cache-dir pandas==0.23.4 &&\
+    pip3 install --no-cache-dir scipy==1.1.0 &&\
+    pip3 install --no-cache-dir scikit-learn==0.20.0
 
 # By default, allow unlimited file sizes, modify it to limit the file sizes
 # To have a maximum of 1 MB (Nginx's default) change the line to:
