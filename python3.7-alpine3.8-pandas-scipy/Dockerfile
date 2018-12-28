@@ -13,6 +13,11 @@ RUN pip3 install --no-cache-dir numpy==1.15.4 &&\
     pip3 install --no-cache-dir pandas==0.23.4 &&\
     pip3 install --no-cache-dir scipy==1.1.0
 
+# replace the uwsgi plugin for Python 3.7
+RUN apk --no-cache add linux-headers pcre-dev &&\
+    pip3 install --no-cache-dir uwsgi==2.0.17.1 &&\
+    cp /usr/local/bin/uwsgi /usr/sbin/uwsgi
+
 # By default, allow unlimited file sizes, modify it to limit the file sizes
 # To have a maximum of 1 MB (Nginx's default) change the line to:
 # ENV NGINX_MAX_UPLOAD 1m
