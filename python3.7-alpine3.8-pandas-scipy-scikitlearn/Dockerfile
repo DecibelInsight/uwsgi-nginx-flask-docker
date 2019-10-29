@@ -9,14 +9,16 @@ RUN apk update &&\
     apk --no-cache add build-base gcc gfortran &&\
     apk --no-cache add openblas-dev
 
-RUN pip3 install --no-cache-dir numpy==1.15.4 &&\
-    pip3 install --no-cache-dir pandas==0.23.4 &&\
-    pip3 install --no-cache-dir scipy==1.1.0 &&\
-    pip3 install --no-cache-dir scikit-learn==0.20.0
+RUN pip3 install --no-cache-dir numpy==1.17.3 &&\
+    pip3 install --no-cache-dir cython==0.29.13 &&\
+    pip3 install --no-cache-dir joblib==0.14.0 &&\
+    pip3 install --no-cache-dir pandas==0.25.2 &&\
+    pip3 install --no-cache-dir scipy==1.3.1 &&\
+    pip3 install --no-cache-dir scikit-learn==0.21.3
 
 # replace the uwsgi plugin for Python 3.7
 RUN apk --no-cache add linux-headers pcre-dev &&\
-    pip3 install --no-cache-dir uwsgi==2.0.17.1 &&\
+    pip3 install --no-cache-dir uwsgi==2.0.18 &&\
     cp /usr/local/bin/uwsgi /usr/sbin/uwsgi
 
 # By default, allow unlimited file sizes, modify it to limit the file sizes
